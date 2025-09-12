@@ -40,3 +40,26 @@ body {
   font-size: 20px;
   font-weight: bold;
 }
+.destinations-page {
+  padding: 20px;
+}
+
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.destination-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.destination-card:hover {
+  transform: scale(1.03);
+  border-color: #333;
+}
