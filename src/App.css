@@ -63,3 +63,24 @@ body {
   transform: scale(1.03);
   border-color: #333;
 }
+.clear-btn {
+  margin: 10px 0 20px 0;
+  padding: 8px 16px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.clear-btn:hover {
+  background-color: #cc0000;
+}
+
+.empty-message {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  margin-top: 20px;
+}
