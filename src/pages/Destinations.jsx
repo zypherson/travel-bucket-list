@@ -20,12 +20,20 @@ export default function Destinations() {
   const handleAddPlace = (place) => {
     setPlaces((prev) => [place, ...prev]);
   };
+  const handleClearAll = () => {
+    if (window.confirm("Are you sure you want to clear all destinations?")) {
+      setPlaces([]);
+    }
+  };
 
   return (
     <div className="destinations-page">
       <h1>🌍 Destinations</h1>
 
       <DestinationForm onAdd={handleAddPlace} />
+      <button onClick={handleClearAll} className="clear-btn">
+        Clear All Destinations
+      </button>
 
       <div className="destinations-grid">
         {places.map((place) => (
