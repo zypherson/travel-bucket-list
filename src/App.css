@@ -84,3 +84,38 @@ body {
   color: #666;
   margin-top: 20px;
 }
+.destination-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  margin: 20px 0;
+}
+
+.destination-form input,
+.destination-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.destination-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.destination-form button {
+  padding: 10px;
+  background-color: #0077cc;
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.destination-form button:hover {
+  background-color: #005fa3;
+}

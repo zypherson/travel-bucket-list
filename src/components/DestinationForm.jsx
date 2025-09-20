@@ -1,5 +1,5 @@
-// src/components/DestinationForm.js
-import { useState } from "react";
+
+import { useState } from "react";   
 
 const DestinationForm = ({ onAdd }) => {
   const [formData, setFormData] = useState({
@@ -17,9 +17,10 @@ const DestinationForm = ({ onAdd }) => {
     e.preventDefault();
     onAdd(formData);
     setFormData({ name: "", location: "", notes: "" }); 
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="destination-form">
       <div>
         <label>Destination Name: </label>
         <input
@@ -55,4 +56,4 @@ const DestinationForm = ({ onAdd }) => {
   );
 };
 
-export default DestinationForm;
+export default DestinationForm;  
