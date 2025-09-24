@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import DestinationForm from "../components/DestinationForm";
+import DestinationList from "../components/DestinationList";
 
 export default function Destinations() {
   const [places, setPlaces] = useState(() => {
-    // Load saved destinations from localStorage 
     const stored = localStorage.getItem("destinations");
     return stored ? JSON.parse(stored) : [
       { id: 1, name: "Paris, France", description: "The city of lights and romance." },
@@ -12,7 +12,6 @@ export default function Destinations() {
     ];
   });
 
-  // Save to local storage when place is added
   useEffect(() => {
     localStorage.setItem("destinations", JSON.stringify(places));
   }, [places]);
@@ -20,6 +19,7 @@ export default function Destinations() {
   const handleAddPlace = (place) => {
     setPlaces((prev) => [place, ...prev]);
   };
+
   const handleClearAll = () => {
     if (window.confirm("Are you sure you want to clear all destinations?")) {
       setPlaces([]);
@@ -35,14 +35,7 @@ export default function Destinations() {
         Clear All Destinations
       </button>
 
-      <div className="destinations-grid">
-        {places.map((place) => (
-          <div key={place.id} className="destination-card">
-            <h2>{place.name}</h2>
-            <p>{place.description}</p>
-          </div>
-        ))}
-      </div>
+      <DestinationList destinations={places} />
     </div>
   );
 }
