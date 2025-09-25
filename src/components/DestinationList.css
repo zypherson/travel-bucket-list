@@ -1,0 +1,40 @@
+.destination-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .destination-card {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+  }
+  
+  .destination-card h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .destination-card .location {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  .destination-card .notes {
+    font-size: 13px;
+    color: #777;
+    font-style: italic;
+  }
+  
+  .empty-list {
+    text-align: center;
+    color: #666;
+    margin-top: 20px;
+  }
+  
