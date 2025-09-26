@@ -25,6 +25,10 @@ export default function Destinations() {
       setPlaces([]);
     }
   };
+  const handleDelete = (id) => {
+    setPlaces((prev) => prev.filter((place) => place.id !== id));
+  };
+  
 
   return (
     <div className="destinations-page">
@@ -36,6 +40,8 @@ export default function Destinations() {
       </button>
 
       <DestinationList destinations={places} />
+      <DestinationList destinations={places} onDelete={handleDelete} />
+
     </div>
   );
 }
