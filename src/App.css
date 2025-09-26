@@ -119,3 +119,16 @@ body {
 .destination-form button:hover {
   background-color: #005fa3;
 }
+.delete-btn {
+  margin-top: 10px;
+  padding: 6px 10px;
+  border: none;
+  background: crimson;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: darkred;
+}
