@@ -1,21 +1,22 @@
 import "./DestinationList.css";
 
-const DestinationList = ({ destinations }) => {
-  if (destinations.length === 0) {
-    return <p className="empty-list">No destinations yet. Add your first one!</p>;
+const DestinationList = ({ destinations,onDelete }) => {
+    return (
+      <div className="destinations-grid">
+        {destinations.map((place) => (
+          <div key={place.id} className="destination-card">
+            <h2>{place.name}</h2>
+            <p>{place.description}</p>
+            <button
+              onClick={() => onDelete(place.id)}
+              className="delete-btn"
+            >
+              ❌ Delete
+            </button>
+          </div>
+        ))}
+      </div>
+    );
   }
-
-  return (
-    <ul className="destination-list">
-      {destinations.map((dest, index) => (
-        <li key={index} className="destination-card">
-          <h3>{dest.name}</h3>
-          <p className="location">{dest.location}</p>
-          {dest.notes && <p className="notes">{dest.notes}</p>}
-        </li>
-      ))}
-    </ul>
-  );
-};
 
 export default DestinationList;
