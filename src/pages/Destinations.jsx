@@ -3,6 +3,8 @@ import DestinationForm from "../components/DestinationForm";
 import DestinationList from "../components/DestinationList";
 
 export default function Destinations() {
+  const [searchTerm, setSearchTerm] = useState("");
+
   const [places, setPlaces] = useState(() => {
     const stored = localStorage.getItem("destinations");
     return stored ? JSON.parse(stored) : [
@@ -19,6 +21,10 @@ export default function Destinations() {
   const handleAddPlace = (place) => {
     setPlaces((prev) => [place, ...prev]);
   };
+  const filteredPlaces = places.filter((place) =>
+    place.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  
 
   const handleClearAll = () => {
     if (window.confirm("Are you sure you want to clear all destinations?")) {
@@ -38,9 +44,16 @@ export default function Destinations() {
       <button onClick={handleClearAll} className="clear-btn">
         Clear All Destinations
       </button>
+      <input
+  type="text"
+  placeholder="Search destinations..."
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+  className="search-bar"
+/>
 
       <DestinationList destinations={places} />
-      <DestinationList destinations={places} onDelete={handleDelete} />
+      <DestinationList destinations={filteredPlaces} onDelete={handleDelete} />
 
     </div>
   );
