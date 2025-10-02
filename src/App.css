@@ -132,3 +132,12 @@ body {
 .delete-btn:hover {
   background: darkred;
 }
+
+.search-bar {
+  width: 100%;
+  padding: 8px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
