@@ -3,8 +3,7 @@ import DestinationForm from "../components/DestinationForm";
 import DestinationList from "../components/DestinationList";
 
 export default function Destinations() {
-  const [searchTerm, setSearchTerm] = useState("");
-
+  
   const [places, setPlaces] = useState(() => {
     const stored = localStorage.getItem("destinations");
     return stored ? JSON.parse(stored) : [
@@ -21,10 +20,6 @@ export default function Destinations() {
   const handleAddPlace = (place) => {
     setPlaces((prev) => [place, ...prev]);
   };
-  const filteredPlaces = places.filter((place) =>
-    place.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    place.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
   
   
 
@@ -41,22 +36,24 @@ export default function Destinations() {
   return (
     <div className="destinations-page">
       <h1>🌍 Destinations</h1>
-
+  
       <DestinationForm onAdd={handleAddPlace} />
       <button onClick={handleClearAll} className="clear-btn">
         Clear All Destinations
       </button>
-      <input
-  type="text"
-  placeholder="Search destinations..."
-  value={searchTerm}
-  onChange={(e) => setSearchTerm(e.target.value)}
-  className="search-bar"
-/>
-
-      <DestinationList destinations={places} />
-      <DestinationList destinations={filteredPlaces} onDelete={handleDelete} />
-
+  
+      <div className="destinations-grid">
+        {places.map((place) => (
+          <div key={place.id} className="destination-card">
+            <h2>{place.name}</h2>
+            <p>{place.description}</p>
+            <span className="category-badge">🏷 {place.category}</span>
+            <button onClick={() => handleDelete(place.id)} className="delete-btn">
+              Delete
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
-}
+}  
