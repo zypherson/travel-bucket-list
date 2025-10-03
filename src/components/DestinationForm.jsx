@@ -1,59 +1,46 @@
+import { useState } from "react";
 
-import { useState } from "react";   
-
-const DestinationForm = ({ onAdd }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    location: "",
-    notes: ""
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
+export default function DestinationForm({ onAdd }) {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("City"); 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAdd(formData);
-    setFormData({ name: "", location: "", notes: "" }); 
-  };
+    if (!name.trim() || !description.trim()) return;
 
+    const newPlace = {
+      id: Date.now(),
+      name,
+      description,
+      category, 
+    };
+
+    onAdd(newPlace);
+    setName("");
+    setDescription("");
+    setCategory("City"); 
+}
   return (
     <form onSubmit={handleSubmit} className="destination-form">
-      <div>
-        <label>Destination Name: </label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-      </div>
-
-      <div>
-        <label>Location: </label>
-        <input
-          type="text"
-          name="location"
-          value={formData.location}
-          onChange={handleChange}
-        />
-      </div>
-
-      <div>
-        <label>Notes: </label>
-        <input
-          type="text"
-          name="notes"
-          value={formData.notes}
-          onChange={handleChange}
-        />
-      </div>
-
+      <input
+        type="text"
+        placeholder="Destination name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <textarea
+        placeholder="Short description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+        <option value="City">City</option>
+        <option value="Beach">Beach</option>
+        <option value="Mountain">Mountain</option>
+        <option value="Cultural">Cultural</option>
+        <option value="Adventure">Adventure</option>
+      </select>
       <button type="submit">Add Destination</button>
     </form>
   );
-};
-
-export default DestinationForm;  
+}
