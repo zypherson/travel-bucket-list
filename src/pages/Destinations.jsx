@@ -22,8 +22,10 @@ export default function Destinations() {
     setPlaces((prev) => [place, ...prev]);
   };
   const filteredPlaces = places.filter((place) =>
-    place.name.toLowerCase().includes(searchTerm.toLowerCase())
+    place.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    place.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  
   
 
   const handleClearAll = () => {
