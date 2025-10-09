@@ -20,34 +20,38 @@ export default function DestinationForm({ onAdd }) {
     setDescription("");
     setCategory("City"); 
 }
-return (
-    <form onSubmit={handleSubmit} className="destination-form">
-      <input
-        type="text"
-        placeholder="Destination name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+<form onSubmit={handleSubmit} className="destination-form">
+  <input
+    type="text"
+    placeholder="Destination name"
+    value={name}
+    onChange={(e) => setName(e.target.value)}
+    className="form-input"
+  />
 
-      <textarea
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
+  <textarea
+    placeholder="Description"
+    value={description}
+    onChange={(e) => setDescription(e.target.value)}
+    className="form-textarea"
+  />
 
-      <select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      >
-        <option value="">Select Category</option>
-        <option value="City">City</option>
-        <option value="Beach">Beach</option>
-        <option value="Nature">Nature</option>
-        <option value="Historical">Historical</option>
-        <option value="Adventure">Adventure</option>
-      </select>
+  <select
+    value={category}
+    onChange={(e) => setCategory(e.target.value)}
+    className="form-select"
+  >
+    <option value="">Select Category</option>
+    <option value="City">🏙️ City</option>
+    <option value="Beach">🏖️ Beach</option>
+    <option value="Nature">🌲 Nature</option>
+    <option value="Historical">🏰 Historical</option>
+    <option value="Adventure">🧗 Adventure</option>
+  </select>
 
-      <button type="submit">Add Destination</button>
-    </form>
-  );
+  <button type="submit" className="form-btn">
+    Add Destination
+  </button>
+</form>
+
 }
