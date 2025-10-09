@@ -20,7 +20,7 @@ export default function DestinationForm({ onAdd }) {
     setDescription("");
     setCategory("City"); 
 }
-  return (
+return (
     <form onSubmit={handleSubmit} className="destination-form">
       <input
         type="text"
@@ -28,18 +28,25 @@ export default function DestinationForm({ onAdd }) {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
+
       <textarea
-        placeholder="Short description"
+        placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+
+      <select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+      >
+        <option value="">Select Category</option>
         <option value="City">City</option>
         <option value="Beach">Beach</option>
-        <option value="Mountain">Mountain</option>
-        <option value="Cultural">Cultural</option>
+        <option value="Nature">Nature</option>
+        <option value="Historical">Historical</option>
         <option value="Adventure">Adventure</option>
       </select>
+
       <button type="submit">Add Destination</button>
     </form>
   );
