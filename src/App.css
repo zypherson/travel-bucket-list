@@ -141,3 +141,72 @@ body {
   border-radius: 6px;
   font-size: 14px;
 }
+/* --- FORM STYLING --- */
+.destination-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: #0077ff;
+  outline: none;
+}
+
+.form-btn {
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  padding: 10px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.form-btn:hover {
+  background-color: #005ecc;
+}
+
+/* --- CATEGORY BADGES --- */
+.category-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: white;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.category-City {
+  background-color: #ff7f50; /* Coral */
+}
+
+.category-Beach {
+  background-color: #00bfff; /* Deep Sky Blue */
+}
+
+.category-Nature {
+  background-color: #3cb371; /* Medium Sea Green */
+}
+
+.category-Historical {
+  background-color: #b5651d; /* Brownish */
+}
+
+.category-Adventure {
+  background-color: #ff4500; /* Orange Red */
+}
