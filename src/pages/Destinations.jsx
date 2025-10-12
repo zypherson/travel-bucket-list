@@ -64,6 +64,11 @@ export default function Destinations() {
       <div className="destinations-grid">
         {filteredPlaces.map((place) => (
           <div key={place.id} className="destination-card">
+            <img
+              src={place.imageUrl}
+              alt={place.name}
+              className="destination-image"
+             />    
             <h2>{place.name}</h2>
             <p>{place.description}</p>
             <span className="category-badge">🏷 {place.category}</span>
