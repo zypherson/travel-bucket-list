@@ -5,6 +5,19 @@ export default function DestinationForm({ onAdd }) {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("Beaches");
   const [imageUrl, setImageUrl] = useState("");
+  const [imageFile, setImageFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImageUrl(reader.result); // Base64 encoded image
+      };
+      reader.readAsDataURL(file);
+      setImageFile(file);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +28,7 @@ export default function DestinationForm({ onAdd }) {
       name,
       description,
       category,
-      imageUrl: imageUrl || "https://via.placeholder.com/400x250?text=No+Image", // fallback
+      imageUrl: imageUrl || "https://via.placeholder.com/400x250?text=No+Image",
     };
 
     onAdd(newPlace);
@@ -23,6 +36,7 @@ export default function DestinationForm({ onAdd }) {
     setDescription("");
     setImageUrl("");
     setCategory("Beaches");
+    setImageFile(null);
   };
 
   return (
@@ -45,12 +59,30 @@ export default function DestinationForm({ onAdd }) {
         <option>Nature</option>
         <option>Historical</option>
       </select>
-      <input
-        type="text"
-        placeholder="Image URL (optional)"
-        value={imageUrl}
-        onChange={(e) => setImageUrl(e.target.value)}
-      />
+
+      <div className="upload-container">
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+        />
+        <p>or paste an image URL:</p>
+        <input
+          type="text"
+          placeholder="Image URL"
+          value={imageFile ? "" : imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+        />
+      </div>
+
+      {imageUrl && (
+        <img
+          src={imageUrl}
+          alt="Preview"
+          className="preview-image"
+        />
+      )}
+
       <button type="submit">Add Destination</button>
     </form>
   );
