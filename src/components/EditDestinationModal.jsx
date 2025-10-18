@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import './Modal.css'
 
 export default function EditDestinationModal({ destination, onSave, onClose }) {
   const [formData, setFormData] = useState({
