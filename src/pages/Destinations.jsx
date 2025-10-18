@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import DestinationForm from "../components/DestinationForm";
+import EditDestinationModal from "../components/EditDestinationModal";
 
 export default function Destinations() {
   const [places, setPlaces] = useState(() => {
@@ -7,13 +8,13 @@ export default function Destinations() {
     return stored
       ? JSON.parse(stored)
       : [
-          { id: 1, name: "Paris, France", description: "The city of lights and romance.", category: "City" },
-          { id: 2, name: "Tokyo, Japan", description: "A perfect blend of tradition and modern life.", category: "City" },
-          { id: 3, name: "Cape Town, South Africa", description: "Breathtaking mountains and coastline.", category: "Nature" },
+          { id: 1, name: "Paris, France", description: "The city of lights and romance.", category: "Europe" },
+          { id: 2, name: "Tokyo, Japan", description: "A perfect blend of tradition and modern life.", category: "Asia" },
+          { id: 3, name: "Cape Town, South Africa", description: "Breathtaking mountains and coastline.", category: "Africa" },
         ];
   });
 
-  const [filter, setFilter] = useState("All");
+  const [editing, setEditing] = useState(null); // store the destination being edited
 
   useEffect(() => {
     localStorage.setItem("destinations", JSON.stringify(places));
@@ -29,55 +30,49 @@ export default function Destinations() {
     }
   };
 
-  const handleDelete = (id) => {
-    setPlaces((prev) => prev.filter((p) => p.id !== id));
+  const handleSaveEdit = (updatedDestination) => {
+    setPlaces((prev) =>
+      prev.map((place) =>
+        place.id === updatedDestination.id ? updatedDestination : place
+      )
+    );
+    setEditing(null);
   };
-
-  
-  const filteredPlaces =
-    filter === "All" ? places : places.filter((p) => p.category === filter);
-
-  
-  const categories = ["All", ...new Set(places.map((p) => p.category))];
 
   return (
     <div className="destinations-page">
       <h1>🌍 Destinations</h1>
 
       <DestinationForm onAdd={handleAddPlace} />
-
-      <div className="filters">
-        <label>Filter by Category: </label>
-        <select value={filter} onChange={(e) => setFilter(e.target.value)}>
-          {categories.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
-      </div>
-
       <button onClick={handleClearAll} className="clear-btn">
         Clear All Destinations
       </button>
 
       <div className="destinations-grid">
-        {filteredPlaces.map((place) => (
+        {places.map((place) => (
           <div key={place.id} className="destination-card">
-            <img
-              src={place.imageUrl}
-              alt={place.name}
-              className="destination-image"
-             />    
+            {place.image && (
+              <img
+                src={place.image}
+                alt={place.name}
+                className="destination-image"
+              />
+            )}
             <h2>{place.name}</h2>
             <p>{place.description}</p>
-            <span className="category-badge">🏷 {place.category}</span>
-            <button onClick={() => handleDelete(place.id)} className="delete-btn">
-              Delete
-            </button>
+            {place.category && <p className="category-tag">{place.category}</p>}
+            <button onClick={() => setEditing(place)}>Edit</button>
           </div>
         ))}
       </div>
+
+      {editing && (
+        <EditDestinationModal
+          destination={editing}
+          onSave={handleSaveEdit}
+          onClose={() => setEditing(null)}
+        />
+      )}
     </div>
   );
 }
