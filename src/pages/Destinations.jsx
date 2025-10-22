@@ -38,6 +38,12 @@ export default function Destinations() {
     );
     setEditing(null);
   };
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this destination?")) {
+      setPlaces((prev) => prev.filter((place) => place.id !== id));
+    }
+  };
+  
 
   return (
     <div className="destinations-page">
@@ -49,22 +55,34 @@ export default function Destinations() {
       </button>
 
       <div className="destinations-grid">
-        {places.map((place) => (
-          <div key={place.id} className="destination-card">
-            {place.image && (
-              <img
-                src={place.image}
-                alt={place.name}
-                className="destination-image"
-              />
-            )}
-            <h2>{place.name}</h2>
-            <p>{place.description}</p>
-            {place.category && <p className="category-tag">{place.category}</p>}
-            <button onClick={() => setEditing(place)}>Edit</button>
-          </div>
-        ))}
+  {places.map((place) => (
+    <div key={place.id} className="destination-card">
+      {place.image && (
+        <img
+          src={place.image}
+          alt={place.name}
+          className="destination-image"
+        />
+      )}
+      <h2>{place.name}</h2>
+      <p>{place.description}</p>
+      {place.category && <p className="category-tag">{place.category}</p>}
+
+      <div className="card-actions">
+        <button className="edit-btn" onClick={() => setEditing(place)}>
+          ✏️ Edit
+        </button>
+        <button
+          className="delete-btn"
+          onClick={() => handleDelete(place.id)}
+        >
+          🗑️ Delete
+        </button>
       </div>
+    </div>
+  ))}
+</div>
+
 
       {editing && (
         <EditDestinationModal
