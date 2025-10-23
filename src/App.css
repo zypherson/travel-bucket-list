@@ -234,3 +234,28 @@ body {
   margin-top: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+.card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.edit-btn,
+.delete-btn {
+  background: #2a2a2a;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.edit-btn:hover {
+  background: #0078ff;
+}
+
+.delete-btn:hover {
+  background: #ff4444;
+}
