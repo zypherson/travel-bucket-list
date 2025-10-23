@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import DestinationForm from "../components/DestinationForm";
 import EditDestinationModal from "../components/EditDestinationModal";
 
 export default function Destinations() {
   const [places, setPlaces] = useState(() => {
+
     const stored = localStorage.getItem("destinations");
     return stored
       ? JSON.parse(stored)
@@ -15,6 +17,8 @@ export default function Destinations() {
   });
 
   const [editing, setEditing] = useState(null); // store the destination being edited
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("destinations", JSON.stringify(places));
@@ -23,6 +27,21 @@ export default function Destinations() {
   const handleAddPlace = (place) => {
     setPlaces((prev) => [place, ...prev]);
   };
+  const handleDeleteClick = (id) => {
+    setDeleteTarget(id);
+    setShowConfirm(true);
+  };
+  const confirmDelete = () => {
+    setPlaces((prev) => prev.filter((place) => place.id !== deleteTarget));
+    setShowConfirm(false);
+    setDeleteTarget(null);
+  };
+  const cancelDelete = () => {
+    setShowConfirm(false);
+    setDeleteTarget(null);
+  };
+  
+
 
   const handleClearAll = () => {
     if (window.confirm("Are you sure you want to clear all destinations?")) {
