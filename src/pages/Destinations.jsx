@@ -57,11 +57,6 @@ export default function Destinations() {
     );
     setEditing(null);
   };
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this destination?")) {
-      setPlaces((prev) => prev.filter((place) => place.id !== id));
-    }
-  };
   
 
   return (
@@ -93,7 +88,7 @@ export default function Destinations() {
         </button>
         <button
           className="delete-btn"
-          onClick={() => handleDelete(place.id)}
+          onClick={() => handleDeleteClick(place.id)}
         >
           🗑️ Delete
         </button>
@@ -110,6 +105,25 @@ export default function Destinations() {
           onClose={() => setEditing(null)}
         />
       )}
+
+      
+      {showConfirm && (
+    <div className="confirm-overlay">
+     <div className="confirm-modal">
+        <h3>Delete Destination?</h3>
+         <p>This action cannot be undone.</p>
+         <div className="confirm-actions">
+         <button className="confirm-btn delete" onClick={confirmDelete}>
+          Delete
+         </button>
+         <button className="confirm-btn cancel" onClick={cancelDelete}>
+          Cancel
+        </button>
+        </div>
+      </div>
     </div>
+    )}
+    </div>
+    
   );
 }
