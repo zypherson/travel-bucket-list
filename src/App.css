@@ -259,3 +259,56 @@ body {
 .delete-btn:hover {
   background: #ff4444;
 }
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.confirm-modal {
+  background: #1e1e1e;
+  color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.confirm-btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.confirm-btn.delete {
+  background: #ff4444;
+  color: white;
+}
+
+.confirm-btn.delete:hover {
+  background: #ff2222;
+}
+
+.confirm-btn.cancel {
+  background: #444;
+  color: white;
+}
+
+.confirm-btn.cancel:hover {
+  background: #666;
+}
